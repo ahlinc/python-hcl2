@@ -116,4 +116,4 @@ node_modules/
 .mypy_cache/
 
 # Don't commit the generated parser
-lark_parser.py
+hcl2/hcl2.lark.cache
