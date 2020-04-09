@@ -9,11 +9,17 @@ LARK_CACHE_FILE = os.path.join(dirname(__file__), 'hcl2.lark.cache')
 LARK_FILE = os.path.join(dirname(__file__), 'hcl2.lark')
 
 
-def Lark_Cached(transformer=None, postlex=None):
+def Lark_Cached(transformer=None, postlex=None, **k):
   return Lark(open(LARK_FILE),
               parser="lalr", lexer="standard",
               transformer=transformer, postlex=postlex,
-              cache=str(LARK_CACHE_FILE))
+              cache=str(LARK_CACHE_FILE),
+              **k
+              )
 
 
-hcl2 = Lark_Cached(transformer=DictTransformer())
+hcl2 = Lark_Cached(
+    transformer=DictTransformer(),
+    # debug=True,
+    # ambiguity="explicit",
+)
